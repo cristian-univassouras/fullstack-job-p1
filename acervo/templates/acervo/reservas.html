@@ -1,0 +1,30 @@
+{% extends 'acervo/base.html' %}
+
+{% block conteudo %}
+
+<h1>Reservas</h1>
+
+<a class="botao-novo" href="{% url 'nova_reserva' %}">+ Nova reserva</a>
+
+<ul>
+    {% for reserva in reservas %}
+        <li>
+            <strong>{{ reserva.livro.titulo }}</strong> — {{ reserva.membro.nome }}
+            <br>
+            <span class="meta">
+                {{ reserva.data_reserva }}
+                {% if reserva.atendida %}
+                    · Atendida
+                {% else %}
+                    · Aguardando
+                {% endif %}
+            </span>
+            <br>
+            <a href="{% url 'cancelar_reserva' reserva.pk %}">Cancelar</a>
+        </li>
+    {% empty %}
+        <li>Nenhuma reserva registrada.</li>
+    {% endfor %}
+</ul>
+
+{% endblock %}

@@ -1,0 +1,22 @@
+{% extends 'acervo/base.html' %}
+
+{% block conteudo %}
+
+<h1>Autores</h1>
+
+<a class="botao-novo" href="{% url 'novo_autor' %}">+ Novo autor</a>
+
+<ul>
+    {% for autor in autores %}
+        <li>
+            {{ autor.nome }}
+            <br>
+            <a href="{% url 'editar_autor' autor.pk %}">Editar</a>
+            <a href="{% url 'apagar_autor' autor.pk %}">Apagar</a>
+        </li>
+    {% empty %}
+        <li>Nenhum autor cadastrado.</li>
+    {% endfor %}
+</ul>
+
+{% endblock %}

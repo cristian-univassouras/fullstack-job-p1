@@ -1,0 +1,24 @@
+{% extends 'acervo/base.html' %}
+
+{% block conteudo %}
+
+<h1>Exemplares</h1>
+
+<a class="botao-novo" href="{% url 'novo_exemplar' %}">+ Novo exemplar</a>
+
+<ul>
+    {% for exemplar in exemplares %}
+        <li>
+            <strong>{{ exemplar.livro.titulo }}</strong> — {{ exemplar.codigo_patrimonio }}
+            <br>
+            <span class="meta">{{ exemplar.get_estado_display }}</span>
+            <br>
+            <a href="{% url 'editar_exemplar' exemplar.pk %}">Editar</a>
+            <a href="{% url 'apagar_exemplar' exemplar.pk %}">Apagar</a>
+        </li>
+    {% empty %}
+        <li>Nenhum exemplar cadastrado.</li>
+    {% endfor %}
+</ul>
+
+{% endblock %}

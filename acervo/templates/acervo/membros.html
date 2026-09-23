@@ -1,0 +1,22 @@
+{% extends 'acervo/base.html' %}
+
+{% block conteudo %}
+
+<h1>Membros</h1>
+
+<a class="botao-novo" href="{% url 'novo_membro' %}">+ Novo membro</a>
+
+<ul>
+    {% for membro in membros %}
+        <li>
+            <strong>{{ membro.nome }}</strong> — {{ membro.email }}
+            <br>
+            <a href="{% url 'editar_membro' membro.pk %}">Editar</a>
+            <a href="{% url 'apagar_membro' membro.pk %}">Apagar</a>
+        </li>
+    {% empty %}
+        <li>Nenhum membro cadastrado.</li>
+    {% endfor %}
+</ul>
+
+{% endblock %}

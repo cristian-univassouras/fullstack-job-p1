@@ -1,0 +1,14 @@
+{% extends 'acervo/base.html' %}
+
+{% block conteudo %}
+
+<h1>Confirmar exclusão</h1>
+
+<p>Tem certeza que deseja apagar "{{ objeto }}"?</p>
+
+<form method="post">
+    {% csrf_token %}
+    <button type="submit">Sim, apagar</button>
+</form>
+
+{% endblock %}
