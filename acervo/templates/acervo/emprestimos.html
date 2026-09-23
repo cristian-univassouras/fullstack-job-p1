@@ -9,25 +9,29 @@
 <ul>
     {% for emprestimo in emprestimos %}
         <li>
-            <strong>{{ emprestimo.exemplar.livro.titulo }}</strong> — {{ emprestimo.membro.nome }}
-            <br>
-            <span class="meta">
-                Previsto: {{ emprestimo.data_prevista_devolucao }}
-                {% if emprestimo.data_devolucao %}
-                    · Devolvido: {{ emprestimo.data_devolucao }}
-                {% else %}
-                    · Em aberto
+            <div class="card-corpo">
+                <strong>{{ emprestimo.exemplar.livro.titulo }}</strong>
+                <span>{{ emprestimo.membro.nome }}</span>
+                <span class="meta">
+                    Previsto: {{ emprestimo.data_prevista_devolucao }}
+                    {% if emprestimo.data_devolucao %}
+                        · Devolvido: {{ emprestimo.data_devolucao }}
+                    {% else %}
+                        · Em aberto
+                    {% endif %}
+                    {% if emprestimo.multa %}
+                        · Multa: R$ {{ emprestimo.multa }}
+                    {% endif %}
+                </span>
+            </div>
+            <div class="card-acoes">
+                {% if not emprestimo.data_devolucao %}
+                    <form method="post" action="{% url 'devolver_emprestimo' emprestimo.pk %}">
+                        {% csrf_token %}
+                        <button type="submit">Registrar devolução</button>
+                    </form>
                 {% endif %}
-                {% if emprestimo.multa %}
-                    · Multa: R$ {{ emprestimo.multa }}
-                {% endif %}
-            </span>
-            {% if not emprestimo.data_devolucao %}
-                <form method="post" action="{% url 'devolver_emprestimo' emprestimo.pk %}">
-                    {% csrf_token %}
-                    <button type="submit">Registrar devolução</button>
-                </form>
-            {% endif %}
+            </div>
         </li>
     {% empty %}
         <li>Nenhum empréstimo registrado.</li>

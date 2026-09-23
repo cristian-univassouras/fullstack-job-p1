@@ -9,18 +9,21 @@
 <ul>
     {% for reserva in reservas %}
         <li>
-            <strong>{{ reserva.livro.titulo }}</strong> — {{ reserva.membro.nome }}
-            <br>
-            <span class="meta">
-                {{ reserva.data_reserva }}
-                {% if reserva.atendida %}
-                    · Atendida
-                {% else %}
-                    · Aguardando
-                {% endif %}
-            </span>
-            <br>
-            <a href="{% url 'cancelar_reserva' reserva.pk %}">Cancelar</a>
+            <div class="card-corpo">
+                <strong>{{ reserva.livro.titulo }}</strong>
+                <span>{{ reserva.membro.nome }}</span>
+                <span class="meta">
+                    {{ reserva.data_reserva }}
+                    {% if reserva.atendida %}
+                        · Atendida
+                    {% else %}
+                        · Aguardando
+                    {% endif %}
+                </span>
+            </div>
+            <div class="card-acoes">
+                <a href="{% url 'cancelar_reserva' reserva.pk %}">Cancelar</a>
+            </div>
         </li>
     {% empty %}
         <li>Nenhuma reserva registrada.</li>

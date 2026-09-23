@@ -9,10 +9,16 @@
 <ul>
     {% for autor in autores %}
         <li>
-            {{ autor.nome }}
-            <br>
-            <a href="{% url 'editar_autor' autor.pk %}">Editar</a>
-            <a href="{% url 'apagar_autor' autor.pk %}">Apagar</a>
+            <div class="card-corpo">
+                {% if autor.imagem_url %}
+                    <img class="card-imagem" src="{{ autor.imagem_url }}" alt="Foto de {{ autor.nome }}">
+                {% endif %}
+                <strong>{{ autor.nome }}</strong>
+            </div>
+            <div class="card-acoes">
+                <a href="{% url 'editar_autor' autor.pk %}">Editar</a>
+                <a href="{% url 'apagar_autor' autor.pk %}">Apagar</a>
+            </div>
         </li>
     {% empty %}
         <li>Nenhum autor cadastrado.</li>

@@ -9,10 +9,14 @@
 <ul>
     {% for membro in membros %}
         <li>
-            <strong>{{ membro.nome }}</strong> — {{ membro.email }}
-            <br>
-            <a href="{% url 'editar_membro' membro.pk %}">Editar</a>
-            <a href="{% url 'apagar_membro' membro.pk %}">Apagar</a>
+            <div class="card-corpo">
+                <strong>{{ membro.nome }}</strong>
+                <span class="meta">{{ membro.email }}</span>
+            </div>
+            <div class="card-acoes">
+                <a href="{% url 'editar_membro' membro.pk %}">Editar</a>
+                <a href="{% url 'apagar_membro' membro.pk %}">Apagar</a>
+            </div>
         </li>
     {% empty %}
         <li>Nenhum membro cadastrado.</li>
