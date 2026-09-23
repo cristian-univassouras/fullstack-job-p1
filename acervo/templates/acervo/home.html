@@ -1,0 +1,57 @@
+{% load static %}
+<html>
+<head>
+    <title>Sua Vez de Ler</title>
+    <link rel="stylesheet" href="{% static 'acervo/home.css' %}">
+</head>
+<body class="pagina-inicial">
+
+    <section class="hero">
+        <h1>📚 Sua Vez de Ler</h1>
+        <p>
+            Sistema de gestão de biblioteca: controle o acervo de livros, exemplares,
+            membros, empréstimos e reservas em um só lugar.
+        </p>
+        <a class="botao-entrar" href="{% url 'lista' %}">Entrar</a>
+    </section>
+
+    <section class="funcionalidades">
+        <h2>Funcionalidades</h2>
+        <div class="grade-cards">
+            <div class="card">
+                <div class="icone">📖</div>
+                <h3>Acervo de livros</h3>
+                <p>Cadastro de livros por título, autor, ano e categoria (classificação Dewey).</p>
+            </div>
+            <div class="card">
+                <div class="icone">🔍</div>
+                <h3>Busca e filtro</h3>
+                <p>Busque por título ou autor e filtre por tipo de acervo e categoria, juntos ou separados.</p>
+            </div>
+            <div class="card">
+                <div class="icone">🏷️</div>
+                <h3>Controle de exemplares</h3>
+                <p>Cada exemplar físico ou digital tem código de patrimônio e estado (disponível, emprestado, manutenção).</p>
+            </div>
+            <div class="card">
+                <div class="icone">🤝</div>
+                <h3>Empréstimos</h3>
+                <p>Registro de empréstimos com prazo de devolução e cálculo automático de dias de atraso e multa.</p>
+            </div>
+            <div class="card">
+                <div class="icone">⏳</div>
+                <h3>Fila de reservas</h3>
+                <p>Membros podem reservar livros emprestados; a próxima reserva é atendida automaticamente na devolução.</p>
+            </div>
+            <div class="card">
+                <div class="icone">✅</div>
+                <h3>Validação de dados</h3>
+                <p>Regras de negócio aplicadas nos formulários, como impedir ano de publicação futuro.</p>
+            </div>
+        </div>
+    </section>
+
+    <footer class="rodape-inicial">Sua Vez de Ler - Todos os direitos reservados © 2026</footer>
+
+</body>
+</html>

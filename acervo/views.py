@@ -9,6 +9,10 @@ from .forms import (
 )
 
 
+def home(request):
+    return render(request, 'acervo/home.html')
+
+
 def lista_livros(request):
     livros = Livro.objects.select_related('autor').all()
 
