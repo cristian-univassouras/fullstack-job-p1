@@ -1,94 +1,150 @@
+:root {
+    --moodle-laranja: #f98012;
+    --moodle-laranja-escuro: #e06d00;
+    --moodle-navy: #1b3d6d;
+    --moodle-navy-escuro: #142e51;
+    --moodle-cinza-texto: #4a4a4a;
+    --moodle-fundo: #ffffff;
+    --moodle-fundo-suave: #f7f8fa;
+    --moodle-borda: #e4e7eb;
+}
+
 body.pagina-inicial {
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Poppins', Arial, Helvetica, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f4f4f4;
-    color: #333;
+    background-color: var(--moodle-fundo);
+    color: var(--moodle-cinza-texto);
 }
 
 .hero {
-    background-color: #2c3e50;
+    background-color: var(--moodle-navy);
     color: #fff;
-    padding: 4rem 1.5rem 3.5rem;
+    padding: 4.5rem 1.5rem 4rem;
     text-align: center;
 }
 
 .hero h1 {
-    margin: 0 0 0.5rem;
-    font-size: 2.4rem;
+    margin: 0 0 0.75rem;
+    font-size: 2.6rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
 }
 
 .hero p {
     max-width: 600px;
-    margin: 0 auto 2rem;
-    color: #dfe6ee;
+    margin: 0 auto 2.25rem;
+    color: #d9e2ef;
     font-size: 1.1rem;
-    line-height: 1.5;
+    line-height: 1.6;
+    font-weight: 300;
 }
 
 .botao-entrar {
     display: inline-block;
-    background-color: #fff;
-    color: #2c3e50;
+    background-color: var(--moodle-laranja);
+    color: #fff;
     text-decoration: none;
-    font-weight: bold;
-    font-size: 1.1rem;
-    padding: 0.75rem 2.5rem;
-    border-radius: 6px;
-    transition: background-color 0.15s ease, color 0.15s ease;
+    font-weight: 600;
+    font-size: 1.05rem;
+    padding: 0.85rem 2.75rem;
+    border-radius: 999px;
+    box-shadow: 0 4px 14px rgba(249, 128, 18, 0.35);
+    transition: background-color 0.15s ease, transform 0.15s ease;
 }
 
 .botao-entrar:hover {
-    background-color: #dfe6ee;
+    background-color: var(--moodle-laranja-escuro);
+    transform: translateY(-1px);
 }
 
 .funcionalidades {
-    max-width: 1000px;
-    margin: -2rem auto 0;
-    padding: 0 1.5rem 3rem;
+    padding: 3.5rem 0 4rem;
 }
 
 .funcionalidades h2 {
     text-align: center;
-    color: #2c3e50;
-    margin-bottom: 2rem;
+    color: var(--moodle-navy);
+    font-weight: 700;
+    margin-bottom: 2.5rem;
+    font-size: 1.9rem;
+}
+
+.carrossel {
+    overflow: hidden;
+    width: 100%;
+    -webkit-mask-image: linear-gradient(to right, transparent, #000 4%, #000 96%, transparent);
+    mask-image: linear-gradient(to right, transparent, #000 4%, #000 96%, transparent);
 }
 
 .grade-cards {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
-    gap: 1.25rem;
+    display: flex;
+    width: max-content;
+    gap: 1.5rem;
+    animation: rolar-carrossel 28s linear infinite;
+}
+
+.carrossel:hover .grade-cards {
+    animation-play-state: paused;
+}
+
+@keyframes rolar-carrossel {
+    from {
+        transform: translateX(0);
+    }
+
+    to {
+        transform: translateX(-50%);
+    }
 }
 
 .card {
+    flex: 0 0 260px;
     background-color: #fff;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    padding: 1.5rem;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+    border: 1px solid var(--moodle-borda);
+    border-radius: 14px;
+    padding: 1.75rem 1.5rem;
+    box-shadow: 0 2px 10px rgba(27, 61, 109, 0.06);
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(27, 61, 109, 0.12);
 }
 
 .card .icone {
-    font-size: 1.8rem;
-    margin-bottom: 0.5rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+    background-color: rgba(249, 128, 18, 0.12);
+    font-size: 1.5rem;
+    margin-bottom: 0.85rem;
 }
 
 .card h3 {
     margin: 0 0 0.5rem;
-    color: #2c3e50;
+    color: var(--moodle-navy);
+    font-weight: 600;
     font-size: 1.1rem;
 }
 
 .card p {
     margin: 0;
-    font-size: 0.92rem;
-    color: #555;
-    line-height: 1.4;
+    font-size: 0.93rem;
+    color: var(--moodle-cinza-texto);
+    line-height: 1.5;
+    font-weight: 300;
 }
 
 .rodape-inicial {
-    background-color: #2c3e50;
-    color: #fff;
-    padding: 1rem;
+    background-color: var(--moodle-navy-escuro);
+    color: #cfd9e6;
+    padding: 1.25rem;
     text-align: center;
+    font-size: 0.9rem;
+    font-weight: 300;
 }

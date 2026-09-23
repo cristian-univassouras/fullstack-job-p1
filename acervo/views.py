@@ -9,8 +9,24 @@ from .forms import (
 )
 
 
+FUNCIONALIDADES = [
+    {'icone': '📖', 'titulo': 'Acervo de livros',
+     'texto': 'Cadastro de livros por título, autor, ano e categoria (classificação Dewey).'},
+    {'icone': '🔍', 'titulo': 'Busca e filtro',
+     'texto': 'Busque por título ou autor e filtre por tipo de acervo e categoria, juntos ou separados.'},
+    {'icone': '🏷️', 'titulo': 'Controle de exemplares',
+     'texto': 'Cada exemplar físico ou digital tem código de patrimônio e estado (disponível, emprestado, manutenção).'},
+    {'icone': '🤝', 'titulo': 'Empréstimos',
+     'texto': 'Registro de empréstimos com prazo de devolução e cálculo automático de dias de atraso e multa.'},
+    {'icone': '⏳', 'titulo': 'Fila de reservas',
+     'texto': 'Membros podem reservar livros emprestados; a próxima reserva é atendida automaticamente na devolução.'},
+    {'icone': '✅', 'titulo': 'Validação de dados',
+     'texto': 'Regras de negócio aplicadas nos formulários, como impedir ano de publicação futuro.'},
+]
+
+
 def home(request):
-    return render(request, 'acervo/home.html')
+    return render(request, 'acervo/home.html', {'funcionalidades': FUNCIONALIDADES})
 
 
 def lista_livros(request):
