@@ -80,7 +80,6 @@ body.pagina-inicial {
 .grade-cards {
     display: flex;
     width: max-content;
-    gap: 1.5rem;
     animation: rolar-carrossel 28s linear infinite;
 }
 
@@ -100,6 +99,7 @@ body.pagina-inicial {
 
 .card {
     flex: 0 0 260px;
+    margin-right: 1.5rem;
     background-color: #fff;
     border: 1px solid var(--moodle-borda);
     border-radius: 14px;
