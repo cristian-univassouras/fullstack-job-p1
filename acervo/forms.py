@@ -9,6 +9,10 @@ class LivroForm(forms.ModelForm):
         model = Livro
         fields = ['titulo', 'autor', 'ano', 'tipo_acervo', 'categoria']
 
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['autor'].empty_label = 'Selecione um autor'
+
     def clean_ano(self):
         ano = self.cleaned_data.get('ano')
         ano_atual = date.today().year
@@ -28,6 +32,10 @@ class ExemplarForm(forms.ModelForm):
         model = Exemplar
         fields = ['livro', 'codigo_patrimonio', 'estado']
 
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['livro'].empty_label = 'Selecione um livro'
+
 
 class MembroForm(forms.ModelForm):
     class Meta:
@@ -43,9 +51,16 @@ class EmprestimoForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.fields['exemplar'].queryset = Exemplar.objects.filter(estado='disponivel')
+        self.fields['exemplar'].empty_label = 'Selecione um exemplar disponível'
+        self.fields['membro'].empty_label = 'Selecione um membro'
 
 
 class ReservaForm(forms.ModelForm):
     class Meta:
         model = Reserva
         fields = ['livro', 'membro']
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['livro'].empty_label = 'Selecione um livro'
+        self.fields['membro'].empty_label = 'Selecione um membro'
