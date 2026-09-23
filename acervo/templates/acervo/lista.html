@@ -31,6 +31,9 @@
         <li>
             <strong>{{ livro.titulo }}</strong> — {{ livro.autor }} ({{ livro.ano }})<br>
             <span class="meta">{{ livro.get_tipo_acervo_display }} · {{ livro.get_categoria_display }}</span>
+            <br>
+            <a href="{% url 'editar_livro' livro.pk %}">Editar</a>
+            <a href="{% url 'apagar_livro' livro.pk %}">Apagar</a>
         </li>
     {% empty %}
         <li>Nenhum livro encontrado.</li>
