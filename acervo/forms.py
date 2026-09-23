@@ -7,7 +7,7 @@ from .models import Livro, Autor, Exemplar, Membro, Emprestimo, Reserva
 class LivroForm(forms.ModelForm):
     class Meta:
         model = Livro
-        fields = ['titulo', 'autor', 'ano', 'tipo_acervo', 'categoria']
+        fields = ['titulo', 'autor', 'ano', 'tipo_acervo', 'categoria', 'imagem_url']
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -24,7 +24,7 @@ class LivroForm(forms.ModelForm):
 class AutorForm(forms.ModelForm):
     class Meta:
         model = Autor
-        fields = ['nome']
+        fields = ['nome', 'imagem_url']
 
 
 class ExemplarForm(forms.ModelForm):

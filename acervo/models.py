@@ -5,6 +5,7 @@ from django.db import models
 
 class Autor(models.Model):
     nome = models.CharField(max_length=150)
+    imagem_url = models.URLField(blank=True, verbose_name='URL da imagem')
 
     def __str__(self):
         return self.nome
@@ -38,6 +39,7 @@ class Livro(models.Model):
     categoria = models.CharField(
         max_length=3, choices=CATEGORIA_CHOICES, default='000'
     )
+    imagem_url = models.URLField(blank=True, verbose_name='URL da imagem (capa)')
 
     def __str__(self):
         return self.titulo
