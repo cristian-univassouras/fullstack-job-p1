@@ -7,4 +7,7 @@ urlpatterns = [
          views.lista_livros,
          name='lista'
          ),
+    path(
+        'livros/novo/', views.novo_livro, name='novo_livro'
+    )
 ]
