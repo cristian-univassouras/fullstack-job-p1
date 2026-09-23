@@ -45,6 +45,46 @@ li {
     margin-bottom: 0.5rem;
 }
 
+li .meta {
+    color: #777;
+    font-size: 0.85rem;
+}
+
+form.busca {
+    max-width: 700px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    align-items: center;
+}
+
+form.busca input,
+form.busca select {
+    flex: 1;
+    min-width: 160px;
+    width: auto;
+}
+
+form.busca button {
+    width: auto;
+    padding: 0.5rem 1.5rem;
+    margin-top: 0;
+}
+
+.botao-novo {
+    display: block;
+    max-width: 600px;
+    margin: 0 auto 1rem;
+    text-align: right;
+    color: #2c3e50;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.botao-novo:hover {
+    text-decoration: underline;
+}
+
 form {
     max-width: 400px;
     margin: 2rem auto;
