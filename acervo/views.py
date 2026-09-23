@@ -16,12 +16,15 @@ def lista_livros(request):
     tipo = request.GET.get('tipo', '')
     categoria = request.GET.get('categoria', '')
 
+    condicao = Q()
     if nome:
-        livros = livros.filter(Q(titulo__icontains=nome) | Q(autor__nome__icontains=nome))
+        condicao &= Q(titulo__icontains=nome) | Q(autor__nome__icontains=nome)
     if tipo:
-        livros = livros.filter(tipo_acervo=tipo)
+        condicao &= Q(tipo_acervo=tipo)
     if categoria:
-        livros = livros.filter(categoria=categoria)
+        condicao &= Q(categoria=categoria)
+
+    livros = livros.filter(condicao)
 
     return render(
         request, 'acervo/lista.html',
