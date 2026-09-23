@@ -15,6 +15,9 @@ body.pagina-inicial {
     padding: 0;
     background-color: var(--moodle-fundo);
     color: var(--moodle-cinza-texto);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
 
 .hero {
@@ -147,4 +150,5 @@ body.pagina-inicial {
     text-align: center;
     font-size: 0.9rem;
     font-weight: 300;
+    margin-top: auto;
 }
