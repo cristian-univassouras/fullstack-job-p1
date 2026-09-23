@@ -86,22 +86,73 @@ h1 {
 
 ul {
     list-style: none;
-    max-width: 600px;
-    margin: 0 auto;
-    padding: 0 1rem;
+    margin: 0;
+    padding: 0 1.5rem 1.5rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 1.25rem;
+    align-items: start;
 }
 
 li {
     background-color: #fff;
     border: 1px solid #ddd;
-    border-radius: 4px;
-    padding: 0.75rem 1rem;
-    margin-bottom: 0.5rem;
+    border-radius: 8px;
+    padding: 1rem 1.25rem;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+li:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.1);
+}
+
+li:only-child {
+    grid-column: 1 / -1;
+    text-align: center;
+    color: #777;
+    box-shadow: none;
+}
+
+li:only-child:hover {
+    transform: none;
+    box-shadow: none;
 }
 
 li .meta {
+    display: block;
     color: #777;
     font-size: 0.85rem;
+    margin: 0.35rem 0;
+}
+
+li a {
+    color: #2c3e50;
+    text-decoration: none;
+    font-size: 0.9rem;
+    margin-right: 0.75rem;
+}
+
+li a:hover {
+    text-decoration: underline;
+}
+
+li form {
+    max-width: none;
+    margin: 0.75rem 0 0;
+    padding: 0;
+    background: none;
+    border: none;
+    box-shadow: none;
+}
+
+li form button {
+    display: inline-block;
+    width: auto;
+    padding: 0.4rem 1rem;
+    font-size: 0.85rem;
+    margin-top: 0;
 }
 
 form.busca {
@@ -127,8 +178,8 @@ form.busca button {
 
 .botao-novo {
     display: block;
-    max-width: 600px;
-    margin: 0 auto 1rem;
+    margin: 0 0 1rem;
+    padding: 0 1.5rem;
     text-align: right;
     color: #2c3e50;
     font-weight: bold;
