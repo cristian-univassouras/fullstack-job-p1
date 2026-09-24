@@ -4,6 +4,12 @@
 
 <h1>Autores</h1>
 
+<form method="get" class="busca">
+    <input type="text" name="nome" placeholder="Buscar por nome" value="{{ filtro_nome }}">
+
+    <button type="submit">Buscar</button>
+</form>
+
 <a class="botao-novo" href="{% url 'novo_autor' %}">+ Novo autor</a>
 
 <ul>

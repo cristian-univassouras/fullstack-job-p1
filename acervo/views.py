@@ -92,7 +92,12 @@ def apagar_livro(request, pk):
 
 def lista_autores(request):
     autores = Autor.objects.all()
-    return render(request, 'acervo/autores.html', {'autores': autores})
+
+    nome = request.GET.get('nome', '')
+    if nome:
+        autores = autores.filter(nome__icontains=nome)
+
+    return render(request, 'acervo/autores.html', {'autores': autores, 'filtro_nome': nome})
 
 
 def novo_autor(request):
@@ -128,7 +133,27 @@ def apagar_autor(request, pk):
 
 def lista_exemplares(request):
     exemplares = Exemplar.objects.select_related('livro').all()
-    return render(request, 'acervo/exemplares.html', {'exemplares': exemplares})
+
+    nome = request.GET.get('nome', '')
+    estado = request.GET.get('estado', '')
+
+    condicao = Q()
+    if nome:
+        condicao &= Q(livro__titulo__icontains=nome) | Q(codigo_patrimonio__icontains=nome)
+    if estado:
+        condicao &= Q(estado=estado)
+
+    exemplares = exemplares.filter(condicao)
+
+    return render(
+        request, 'acervo/exemplares.html',
+        {
+            'exemplares': exemplares,
+            'estados': Exemplar.ESTADO_CHOICES,
+            'filtro_nome': nome,
+            'filtro_estado': estado,
+        }
+    )
 
 
 def novo_exemplar(request):
@@ -164,7 +189,12 @@ def apagar_exemplar(request, pk):
 
 def lista_membros(request):
     membros = Membro.objects.all()
-    return render(request, 'acervo/membros.html', {'membros': membros})
+
+    nome = request.GET.get('nome', '')
+    if nome:
+        membros = membros.filter(Q(nome__icontains=nome) | Q(email__icontains=nome))
+
+    return render(request, 'acervo/membros.html', {'membros': membros, 'filtro_nome': nome})
 
 
 def novo_membro(request):
@@ -200,7 +230,24 @@ def apagar_membro(request, pk):
 
 def lista_emprestimos(request):
     emprestimos = Emprestimo.objects.select_related('exemplar__livro', 'membro').all()
-    return render(request, 'acervo/emprestimos.html', {'emprestimos': emprestimos})
+
+    nome = request.GET.get('nome', '')
+    situacao = request.GET.get('situacao', '')
+
+    condicao = Q()
+    if nome:
+        condicao &= Q(exemplar__livro__titulo__icontains=nome) | Q(membro__nome__icontains=nome)
+    if situacao == 'aberto':
+        condicao &= Q(data_devolucao__isnull=True)
+    elif situacao == 'devolvido':
+        condicao &= Q(data_devolucao__isnull=False)
+
+    emprestimos = emprestimos.filter(condicao)
+
+    return render(
+        request, 'acervo/emprestimos.html',
+        {'emprestimos': emprestimos, 'filtro_nome': nome, 'filtro_situacao': situacao}
+    )
 
 
 def novo_emprestimo(request):
@@ -236,7 +283,24 @@ def devolver_emprestimo(request, pk):
 
 def lista_reservas(request):
     reservas = Reserva.objects.select_related('livro', 'membro').all()
-    return render(request, 'acervo/reservas.html', {'reservas': reservas})
+
+    nome = request.GET.get('nome', '')
+    situacao = request.GET.get('situacao', '')
+
+    condicao = Q()
+    if nome:
+        condicao &= Q(livro__titulo__icontains=nome) | Q(membro__nome__icontains=nome)
+    if situacao == 'aguardando':
+        condicao &= Q(atendida=False)
+    elif situacao == 'atendida':
+        condicao &= Q(atendida=True)
+
+    reservas = reservas.filter(condicao)
+
+    return render(
+        request, 'acervo/reservas.html',
+        {'reservas': reservas, 'filtro_nome': nome, 'filtro_situacao': situacao}
+    )
 
 
 def nova_reserva(request):

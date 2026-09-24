@@ -4,6 +4,18 @@
 
 <h1>Reservas</h1>
 
+<form method="get" class="busca">
+    <input type="text" name="nome" placeholder="Buscar por título ou membro" value="{{ filtro_nome }}">
+
+    <select name="situacao">
+        <option value="">Todas as situações</option>
+        <option value="aguardando" {% if filtro_situacao == 'aguardando' %}selected{% endif %}>Aguardando</option>
+        <option value="atendida" {% if filtro_situacao == 'atendida' %}selected{% endif %}>Atendidas</option>
+    </select>
+
+    <button type="submit">Buscar</button>
+</form>
+
 <a class="botao-novo" href="{% url 'nova_reserva' %}">+ Nova reserva</a>
 
 <ul>

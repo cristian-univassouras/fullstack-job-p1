@@ -4,6 +4,18 @@
 
 <h1>Empréstimos</h1>
 
+<form method="get" class="busca">
+    <input type="text" name="nome" placeholder="Buscar por título ou membro" value="{{ filtro_nome }}">
+
+    <select name="situacao">
+        <option value="">Todas as situações</option>
+        <option value="aberto" {% if filtro_situacao == 'aberto' %}selected{% endif %}>Em aberto</option>
+        <option value="devolvido" {% if filtro_situacao == 'devolvido' %}selected{% endif %}>Devolvidos</option>
+    </select>
+
+    <button type="submit">Buscar</button>
+</form>
+
 <a class="botao-novo" href="{% url 'novo_emprestimo' %}">+ Novo empréstimo</a>
 
 <ul>
