@@ -8,13 +8,16 @@ body {
 }
 
 .layout {
-    display: flex;
     min-height: 100vh;
 }
 
 .sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
     width: 220px;
-    flex-shrink: 0;
+    height: 100vh;
+    overflow-y: auto;
     background-color: #2c3e50;
     color: #fff;
     padding: 1.5rem 1rem;
@@ -45,9 +48,10 @@ body {
 }
 
 .area-principal {
-    flex: 1;
     display: flex;
     flex-direction: column;
+    min-height: 100vh;
+    margin-left: 220px;
     min-width: 0;
 }
 
@@ -67,12 +71,15 @@ footer {
 }
 
 @media (max-width: 700px) {
-    .layout {
-        flex-direction: column;
+    .sidebar {
+        position: static;
+        width: auto;
+        height: auto;
+        overflow-y: visible;
     }
 
-    .sidebar {
-        width: auto;
+    .area-principal {
+        margin-left: 0;
     }
 
     .sidebar nav {
@@ -93,13 +100,16 @@ ul {
     padding: 0 1.5rem 1.5rem;
     display: grid;
     grid-template-columns: repeat(auto-fill, 220px);
-    gap: 2.5rem;
+    row-gap: 2.5rem;
+    column-gap: 2.5rem;
+    justify-content: start;
     align-items: start;
 }
 
 li {
     width: 220px;
     height: 280px;
+    box-sizing: border-box;
     background-color: #fff;
     border: 1px solid #ddd;
     border-radius: 8px;
@@ -193,38 +203,69 @@ li form button {
 }
 
 form.busca {
-    max-width: 700px;
+    max-width: none;
+    width: 100%;
+    margin: 0 0 1.5rem;
+    padding: 0 1.5rem;
+    background: none;
+    border: none;
+    box-shadow: none;
     display: flex;
     flex-wrap: wrap;
     gap: 0.75rem;
     align-items: center;
 }
 
-form.busca input,
+form.busca input[type="text"],
 form.busca select {
-    flex: 1;
+    flex: 0 1 auto;
     min-width: 160px;
-    width: auto;
+}
+
+form.busca input[type="text"] {
+    width: 280px;
+}
+
+form.busca select {
+    width: 220px;
+}
+
+form.busca select {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-color: #fff;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%232c3e50' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.75rem center;
+    background-size: 16px;
+    padding-right: 2.25rem;
+    cursor: pointer;
 }
 
 form.busca button {
     width: auto;
-    padding: 0.5rem 1.5rem;
+    padding: 0.65rem 1.75rem;
     margin-top: 0;
 }
 
 .botao-novo {
     display: block;
-    margin: 0 0 1rem;
-    padding: 0 1.5rem;
-    text-align: right;
-    color: #2c3e50;
-    font-weight: bold;
+    width: fit-content;
+    margin: 0 0 1.5rem 1.5rem;
+    background-color: #2c3e50;
+    color: #fff;
+    font-weight: 600;
     text-decoration: none;
+    padding: 0.65rem 1.5rem;
+    border-radius: 8px;
+    transition: background-color 0.15s ease, transform 0.15s ease;
 }
 
 .botao-novo:hover {
-    text-decoration: underline;
+    background-color: #1a252f;
+    transform: translateY(-1px);
+    text-decoration: none;
 }
 
 form {
