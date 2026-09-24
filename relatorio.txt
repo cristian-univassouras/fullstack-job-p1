@@ -1,0 +1,17 @@
+FEATURE 1 - BUSCA E FILTRO NA LISTAGEM
+
+Na listagem de livros, a busca por texto procura pelo título ou pelo nome do
+autor, porque são as informações que o usuário normalmente lembra quando
+procura um livro. Para o filtro escolhi o tipo de acervo (físico ou digital) e
+a categoria Dewey, que é o critério que as bibliotecas usam para organizar o
+acervo. Não usei disponível/emprestado porque, no meu modelo, a
+disponibilidade é de cada exemplar, e não do livro. A busca e os filtros podem
+ser usados juntos ou separados, combinados em uma única consulta com Q().
+
+
+FEATURE 2 - VALIDAÇÃO CUSTOMIZADA NO FORMULÁRIO
+
+No formulário de livro, o ano de publicação não pode ser maior que o ano
+atual. Escolhi essa regra porque um livro do acervo já foi publicado, então um
+ano futuro só pode ser erro de digitação. Sem ela, o livro seria salvo com um
+ano impossível, e isso apareceria na listagem.
